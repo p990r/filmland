@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.filmland.assessment.AssessmentApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.77 s -- in com.filmland.assessment.AssessmentApplicationTests

@@ -1,0 +1,5 @@
+com\filmland\assessment\AssessmentApplication.class
+com\filmland\assessment\CustomerRepository.class
+com\filmland\assessment\Entity\Customer.class
+com\filmland\assessment\CustomerService.class
+com\filmland\assessment\CustomerController.class

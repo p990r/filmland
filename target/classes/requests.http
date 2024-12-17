@@ -1,0 +1,12 @@
+### Get all customers
+GET http://localhost:8080/api/customers
+Accept: application/json
+
+### Create a new customer
+POST http://localhost:8080/api/players
+Content-Type: application/json
+
+{
+  "email": "user@email.com"
+  "password": "123"
+}
