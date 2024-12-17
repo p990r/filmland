@@ -1,10 +1,10 @@
 package com.filmland.assessment.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+//import lombok.Data;
 
 @Entity
-@Data
+//@Data
 @Table(name = "customer", uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Customer {
     @Id
@@ -14,4 +14,12 @@ public class Customer {
     private String email;
     @Column(unique=true)
     private String password;
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
