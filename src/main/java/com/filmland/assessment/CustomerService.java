@@ -21,6 +21,13 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    public CustomerService(){
+    }
+
     public Customer create(Customer customer) {
         return customerRepository.save(customer);
     }
