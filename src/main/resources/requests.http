@@ -3,10 +3,20 @@ GET http://localhost:8080/api/customers
 Accept: application/json
 
 ### Create a new customer
-POST http://localhost:8080/api/players
+POST http://localhost:8080/api/customers/new
 Content-Type: application/json
 
 {
-  "email": "user@email.com"
+  "email": "user@email.com",
+  "password": "123"
+}
+
+
+### Customer login
+POST http://localhost:8080/api/customers/login
+Content-Type: application/json
+
+{
+  "email": "user@email.com",
   "password": "123"
 }
