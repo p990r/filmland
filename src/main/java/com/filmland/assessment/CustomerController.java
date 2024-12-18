@@ -23,11 +23,7 @@ public class CustomerController {
 
     @PostMapping("test")
     public Customer create1() {
-        Customer customer = new Customer();
-        System.out.println(customer);
-        customer.setEmail("e@mail.com");
-        customer.setPassword("1234");
-        System.out.println(customer);
+        Customer customer = new Customer("e@mail.com", "123");
         return this.customerService.create(customer);
     }
 }

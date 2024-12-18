@@ -1,0 +1,7 @@
+dataType: "json",
+contentType : "application/json"
+
+{
+	"email":"user@email.com",
+	"password":"123"
+}
