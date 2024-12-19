@@ -1,7 +1,6 @@
 package com.filmland.assessment.Entity;
 
 import jakarta.persistence.*;
-//import lombok.Data;
 
 @Entity
 @Table
