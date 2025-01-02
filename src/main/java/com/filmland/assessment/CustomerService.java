@@ -17,15 +17,15 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Iterable<Customer> findAll() {
-        return customerRepository.findAll();
-    }
-
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
     public CustomerService(){
+    }
+
+    public Iterable<Customer> findAll() {
+        return customerRepository.findAll();
     }
 
     public Customer create(Customer customer) {

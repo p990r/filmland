@@ -1,12 +1,9 @@
 package com.filmland.assessment;
 
-import io.micrometer.core.ipc.http.HttpSender;
+import com.filmland.assessment.Entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.filmland.assessment.Entity.Customer;
-
-import java.net.http.HttpResponse;
 
 @CrossOrigin
 @RestController
