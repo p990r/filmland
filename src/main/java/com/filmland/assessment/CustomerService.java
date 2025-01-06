@@ -35,7 +35,7 @@ public class CustomerService {
     public ResponseEntity<Object> login(Customer customer) {
         Map<String, String> body = new HashMap<>();
         Optional<Customer> customer1 = customerRepository.findByEmail(customer.getEmail());
-        if(customer1.isPresent() && customer.getPassword().equals(customer.getPassword())) {
+        if(customer1.isPresent() && customer1.get().getPassword().equals(customer.getPassword())) {
             body.put("status:", "Login successful");
             body.put("message:", "Welcome " + customer.getEmail());
             return new ResponseEntity<>(body, HttpStatus.OK);
