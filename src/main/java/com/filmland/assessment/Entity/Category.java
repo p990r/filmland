@@ -1,8 +1,9 @@
 package com.filmland.assessment.Entity;
 
-import jakarta.persistence.*;
-
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table
@@ -14,15 +15,6 @@ public class Category {
     private int availableContent;
     @Column(name = "price", nullable = false, unique = false)
     private double price;
-    @Column(name = "startDate", nullable = true, unique = false)
-    private Date startDate;
-
-    public Category(String name, int availableContent, double price, Date startDate){
-        this.name = name;
-        this.availableContent = availableContent;
-        this.price = price;
-        this.startDate = startDate;
-    }
 
     public Category(String name, int availableContent, double price){
         this.name = name;
@@ -59,13 +51,5 @@ public class Category {
 
     public double getPrice(){
         return this.price;
-    }
-
-    public void setStartDate(Date startDate){
-        this.startDate = startDate;
-    }
-
-    public Date getStartDate(){
-        return this.startDate;
     }
 }
