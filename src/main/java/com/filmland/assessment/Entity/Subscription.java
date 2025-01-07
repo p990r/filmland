@@ -12,8 +12,18 @@ public class Subscription {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @Column(name = "customers", nullable = true, unique = false)
+    @ElementCollection
+    @CollectionTable(
+            name="CUSTOMER",
+            joinColumns=@JoinColumn(name="EMAIL")
+    )
     List<Customer> customers;
     @Column(name = "categories", nullable = true, unique = false)
+    @ElementCollection
+    @CollectionTable(
+            name="CATEGORY",
+            joinColumns=@JoinColumn(name="NAME")
+    )
     List<Category> categories;
     @Column(name = "startDate", nullable = true, unique = false)
     private Date startDate;

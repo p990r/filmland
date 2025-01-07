@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -36,11 +34,11 @@ public class SubscriptionService {
         return subscriptionRepository.save(subscription);
     }
 
-    public Subscription addCustomers(Long id, List<String> customers){
+    public Subscription addCustomers(Long id, List<Customer> customers){
         Optional<Subscription> subscription = subscriptionRepository.findById(id);
         if(subscription.isPresent()){
-            for (String email : customers){
-                Optional<Customer> customer = customerRepository.findByEmail(email);
+            for (Customer cus : customers){
+                Optional<Customer> customer = customerRepository.findByEmail(cus.getEmail());
                 if(customer.isPresent()){
                     subscription.get().addCustomer(customer.get());
                 }
@@ -50,13 +48,13 @@ public class SubscriptionService {
         return null;
     }
 
-    public Subscription addCategories(Long id, List<Long> categories){
+    public Subscription addCategories(Long id, List<Category> categories){
         Optional<Subscription> subscription = subscriptionRepository.findById(id);
         if(subscription.isPresent()){
-            for (Long catid : categories){
-                Optional<Category> category = categoryRepository.findById(catid);
+            for (Category cat : categories){
+                Optional<Category> category = categoryRepository.findByName(cat.getName());
                 if(category.isPresent()){
-                    subscription.get().addCategory(category.get());
+                    subscription.get().addCategory(cat);
                 }
             }
             return subscription.get();
@@ -81,7 +79,25 @@ public class SubscriptionService {
         }
         return null;
     }
-    //TODO:
-    //send customer email, return list with unsubscribed (available) categories
-    // and list with subscribed categories
+
+    public Map<List<Category>,List<Category>> getSubscribedCategories(String email){
+        Optional<Customer> customer = customerRepository.findByEmail(email);
+        if(customer.isPresent()) {
+            Subscription subscription = subscriptionRepository.findByCustomers_email(email);
+            List<Category> availableCategories = categoryRepository.findAll();
+            List<Category> subscribedCategories = new ArrayList<>();
+            List<Category> customerCategories = subscription.getCategories();
+            for(Category item:customerCategories){
+                Optional<Category> category = categoryRepository.findByName(item.getName());
+                if(category.isPresent()) {
+                    availableCategories.remove(category.get());
+                    subscribedCategories.add(category.get());
+                }
+            }
+            Map<List<Category>,List<Category>> map =new HashMap();
+            map.put(availableCategories,subscribedCategories);
+            return map;
+        }
+        return null;
+    }
 }

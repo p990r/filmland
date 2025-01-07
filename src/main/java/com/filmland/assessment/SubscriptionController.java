@@ -1,8 +1,13 @@
 package com.filmland.assessment;
 
+import com.filmland.assessment.Entity.Category;
+import com.filmland.assessment.Entity.Customer;
 import com.filmland.assessment.Entity.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -19,5 +24,25 @@ public class SubscriptionController {
     @PostMapping("new")
     public Subscription create(@RequestBody Subscription subscription) {
         return this.subscriptionService.create(subscription);
+    }
+
+    @PostMapping("addcustomers")
+    public Subscription addCustomers(@RequestBody Long id, List<Customer> customers) {
+        return this.subscriptionService.addCustomers(id, customers);
+    }
+
+    @PostMapping("addcategories")
+    public Subscription addCategories(@RequestBody Long id, List<Category> categories) {
+        return this.subscriptionService.addCategories(id, categories);
+    }
+
+    @PostMapping("addstartdate")
+    public Subscription addStartDate(@RequestBody Long id, Date date) {
+        return this.subscriptionService.addStartDate(id, date);
+    }
+
+    @PostMapping("addenddate")
+    public Subscription addEndDate(@RequestBody Long id, Date date) {
+        return this.subscriptionService.addEndDate(id, date);
     }
 }
