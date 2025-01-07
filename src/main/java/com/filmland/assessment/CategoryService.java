@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class CategoryService {
@@ -24,5 +26,9 @@ public class CategoryService {
 
     public Category create(Category category) {
         return categoryRepository.save(category);
+    }
+
+    public Optional<Category> findCategoryByName(String name){
+        return categoryRepository.findByName(name);
     }
 }

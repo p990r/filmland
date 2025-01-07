@@ -16,6 +16,7 @@ import java.util.Optional;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+    private String custEmail = null;
 
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -38,10 +39,16 @@ public class CustomerService {
         if(customer1.isPresent() && customer1.get().getPassword().equals(customer.getPassword())) {
             body.put("status:", "Login successful");
             body.put("message:", "Welcome " + customer.getEmail());
+            custEmail = customer.getEmail();
             return new ResponseEntity<>(body, HttpStatus.OK);
         }
         body.put("status:", "Login failed");
         body.put("message:", "Wrong credentials");
+        custEmail = null;
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    public String getCustEmail(){
+        return custEmail;
     }
 }

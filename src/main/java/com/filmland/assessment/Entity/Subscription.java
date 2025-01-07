@@ -78,12 +78,20 @@ public class Subscription {
         this.customers = customers;
     }
 
+    public void addCustomer(Customer customer){
+        this.customers.add(customer);
+    }
+
     public List<Customer> getCustomers(){
         return this.customers;
     }
 
     public void setCategories(List<Category> categories){
         this.categories = categories;
+    }
+
+    public void addCategory(Category category){
+        this.categories.add(category);
     }
 
     public List<Category> getCategories(){
