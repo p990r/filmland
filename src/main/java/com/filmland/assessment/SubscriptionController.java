@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -44,5 +45,10 @@ public class SubscriptionController {
     @PostMapping("addenddate")
     public Subscription addEndDate(@RequestBody Long id, Date date) {
         return this.subscriptionService.addEndDate(id, date);
+    }
+
+    @GetMapping("subscribed")
+    public Map<List<Category>,List<Category>> getSubscribedCategories(@PathVariable String email){
+        return subscriptionService.getSubscribedCategories(email);
     }
 }
