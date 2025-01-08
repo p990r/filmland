@@ -4,6 +4,8 @@ import com.filmland.assessment.Entity.Category;
 import com.filmland.assessment.Entity.Customer;
 import com.filmland.assessment.Entity.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,5 +101,25 @@ public class SubscriptionService {
             return map;
         }
         return null;
+    }
+
+    public ResponseEntity<Object> setPaymentDate(Long id) {
+        Optional<Subscription> optionalSubscription = subscriptionRepository.findById(id);
+        Map<String, String> body = new HashMap<>();
+        if (optionalSubscription.isPresent()) {
+            Subscription subscription = optionalSubscription.get();
+            List<Customer> customers = subscription.getCustomers();
+            Date paymentDate = subscription.getStartDate();
+            paymentDate.setMonth(paymentDate.getMonth() + 1);
+            for (Customer customer : customers) {
+                customer.setPaymentDate(paymentDate);
+            }
+            body.put("status:", "Payment added successfully");
+            body.put("message:", "Time to pay.");
+            return new ResponseEntity<>(body, HttpStatus.OK);
+        }
+        body.put("status:", "Update failed");
+        body.put("message:", "Wrong data");
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

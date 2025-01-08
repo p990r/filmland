@@ -2,7 +2,7 @@ package com.filmland.assessment.Entity;
 
 import jakarta.persistence.*;
 
-import java.util.Optional;
+import java.util.Date;
 
 @Entity
 @Table
@@ -14,6 +14,8 @@ public class Customer {
     private String email;
     @Column(name = "password", nullable = false, unique = false)
     private String password;
+    @Column(name = "paymentdate", nullable = false, unique = false)
+    private Date paymentDate;
 
     public Customer(Long id, String email, String password){
         this.id = id;
@@ -47,5 +49,13 @@ public class Customer {
 
     public String getPassword(){
         return this.password;
+    }
+
+    public void setPaymentDate(Date paymentDate){
+        this.paymentDate = paymentDate;
+    }
+
+    public Date getPaymentDate(){
+        return this.paymentDate;
     }
 }

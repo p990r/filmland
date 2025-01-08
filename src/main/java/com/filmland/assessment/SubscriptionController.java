@@ -4,6 +4,7 @@ import com.filmland.assessment.Entity.Category;
 import com.filmland.assessment.Entity.Customer;
 import com.filmland.assessment.Entity.Subscription;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -50,5 +51,10 @@ public class SubscriptionController {
     @GetMapping("subscribed")
     public Map<List<Category>,List<Category>> getSubscribedCategories(@PathVariable String email){
         return subscriptionService.getSubscribedCategories(email);
+    }
+
+    @GetMapping("setpaymentdate")
+    public ResponseEntity<Object> setPaymentDate(@PathVariable Long id){
+        return subscriptionService.setPaymentDate(id);
     }
 }
