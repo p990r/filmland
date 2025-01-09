@@ -110,7 +110,7 @@ public class SubscriptionService {
             Subscription subscription = optionalSubscription.get();
             List<Customer> customers = subscription.getCustomers();
             Date paymentDate = subscription.getStartDate();
-            paymentDate.setMonth(paymentDate.getMonth() + 1);
+            paymentDate.setMonth((paymentDate.getMonth() + 1)%12);
             for (Customer customer : customers) {
                 customer.setPaymentDate(paymentDate);
             }
