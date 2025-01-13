@@ -32,6 +32,26 @@ class CustomerServiceTest {
         assertEquals(1, list.size());
     }
 
+    @Test
+    void create() {
+
+    }
+
+    @Test
+    void login(){
+
+    }
+
+    @Test
+    void getCustEmail(){
+
+    }
+
+    @Test
+    void sharedUser(){
+
+    }
+
     Customer getCustomer() {
         return new Customer("test@test.com", "password");
     }

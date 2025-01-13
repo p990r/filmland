@@ -1,9 +1,13 @@
 package com.filmland.assessment;
 
+import com.filmland.assessment.Entity.Category;
 import com.filmland.assessment.Entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -32,5 +36,10 @@ public class CustomerController {
     @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody Customer customer) {
         return this.customerService.login(customer);
+    }
+
+    @PostMapping("shareduser")
+    public Map<List<Category>,List<Category>> sharedUser(@RequestBody String email){
+        return this.customerService.sharedUser(email);
     }
 }

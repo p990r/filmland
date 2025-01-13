@@ -1,5 +1,6 @@
 package com.filmland.assessment;
 
+import com.filmland.assessment.Entity.Category;
 import com.filmland.assessment.Entity.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+    @Autowired
+    private SubscriptionService subscriptionService;
     private String custEmail = null;
 
     public CustomerService(CustomerRepository customerRepository) {
@@ -50,5 +54,9 @@ public class CustomerService {
 
     public String getCustEmail(){
         return custEmail;
+    }
+
+    public Map<List<Category>,List<Category>> sharedUser(String email){
+        return subscriptionService.getSubscribedCategories(email);
     }
 }
