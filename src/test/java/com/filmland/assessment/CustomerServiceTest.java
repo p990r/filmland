@@ -9,8 +9,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,12 +37,23 @@ class CustomerServiceTest {
 
     @Test
     void create() {
+        Customer customer = getCustomer();
+        when(customerRepository.save(any())).thenReturn(customer);
 
+        // When
+        Customer saved = customerRepository.save(customer);
+
+        // Then
+        verify(customerRepository).save(customer);
+
+        assertEquals(customer, saved);
     }
 
     @Test
     void login(){
-
+        Customer customer = getCustomer();
+        when(customerRepository.findByEmail(any())).thenReturn(Optional.of(customer));
+        assertEquals(customerService.login(customer).getStatusCode().toString(), "200 OK");
     }
 
     @Test
