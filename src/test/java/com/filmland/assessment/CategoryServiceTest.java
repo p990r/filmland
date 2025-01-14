@@ -30,14 +30,14 @@ class CategoryServiceTest {
 
     @Test
     void findAll() {
-        when(categoryRepository.findAll()).thenReturn(getCategories());
+        when(categoryRepository.findAll()).thenReturn(TestModels.getCategories());
         List<Category> list = Lists.newArrayList(categoryService.findAll());
         assertEquals(1, list.size());
     }
 
     @Test
     void create() {
-        Category category = getCategory();
+        Category category = TestModels.getCategory();
         when(categoryRepository.save(any())).thenReturn(category);
 
         // When
@@ -51,19 +51,11 @@ class CategoryServiceTest {
 
     @Test
     void findCategoryByName() {
-        Category category = getCategory();
+        Category category = TestModels.getCategory();
         when(categoryRepository.findByName(any())).thenReturn(Optional.of(category));
 
         Optional<Category> saved = categoryRepository.findByName("test");
 
         assertEquals(category, saved.get());
-    }
-
-    Category getCategory() {
-        return new Category("test", 1, 0.5);
-    }
-
-    List<Category> getCategories() {
-        return Lists.newArrayList(getCategory());
     }
 }

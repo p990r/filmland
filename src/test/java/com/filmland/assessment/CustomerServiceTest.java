@@ -30,14 +30,14 @@ class CustomerServiceTest {
 
     @Test
     void findAll() {
-        when(customerRepository.findAll()).thenReturn(getCustomers());
+        when(customerRepository.findAll()).thenReturn(TestModels.getCustomers());
         List<Customer> list = Lists.newArrayList(customerService.findAll());
         assertEquals(1, list.size());
     }
 
     @Test
     void create() {
-        Customer customer = getCustomer();
+        Customer customer = TestModels.getCustomer();
         when(customerRepository.save(any())).thenReturn(customer);
 
         // When
@@ -51,9 +51,9 @@ class CustomerServiceTest {
 
     @Test
     void login(){
-        Customer customer = getCustomer();
+        Customer customer = TestModels.getCustomer();
         when(customerRepository.findByEmail(any())).thenReturn(Optional.of(customer));
-        assertEquals(customerService.login(customer).getStatusCode().toString(), "200 OK");
+        assertEquals("200 OK", customerService.login(customer).getStatusCode().toString());
     }
 
     @Test
@@ -64,13 +64,5 @@ class CustomerServiceTest {
     @Test
     void sharedUser(){
 
-    }
-
-    Customer getCustomer() {
-        return new Customer("test@test.com", "password");
-    }
-
-    List<Customer> getCustomers() {
-        return Lists.newArrayList(getCustomer());
     }
 }
