@@ -32,4 +32,8 @@ public class TestModels {
         Date endDate = new Date(2002,Calendar.JANUARY,1);
         return new Subscription(getCustomers(), getCategories(), startDate, endDate);
     }
+
+    public static List<Subscription> getSubscriptions() {
+        return Lists.newArrayList(getSubscription());
+    }
 }
