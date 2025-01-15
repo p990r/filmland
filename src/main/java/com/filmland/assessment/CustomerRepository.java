@@ -1,8 +1,8 @@
 package com.filmland.assessment;
 
+import com.filmland.assessment.Entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.filmland.assessment.Entity.Customer;
 
 import java.util.Optional;
 

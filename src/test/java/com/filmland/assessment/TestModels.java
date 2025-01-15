@@ -5,10 +5,8 @@ import com.filmland.assessment.Entity.Customer;
 import com.filmland.assessment.Entity.Subscription;
 import org.assertj.core.util.Lists;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import java.util.List;
 
 public class TestModels {
