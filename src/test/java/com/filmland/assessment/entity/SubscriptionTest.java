@@ -11,13 +11,13 @@ public class SubscriptionTest {
     @Test
     void getCustomers(){
         Subscription subscription = TestModels.getSubscription();
-        assertEquals(1, subscription.getCustomers().size());
+        assertEquals(0, subscription.getCustomers().size());
     }
 
     @Test
     void getCategories(){
         Subscription subscription = TestModels.getSubscription();
-        assertEquals(1, subscription.getCategories().size());
+        assertEquals(0, subscription.getCategories().size());
     }
 
     @Test

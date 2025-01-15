@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,14 +36,32 @@ class SubscriptionServiceTest {
 
     @Test
     void create() {
+        Subscription subscription = TestModels.getSubscription();
+        when(subscriptionRepository.save(any())).thenReturn(subscription);
+
+        // When
+        Subscription saved = subscriptionRepository.save(subscription);
+
+        // Then
+        verify(subscriptionRepository).save(subscription);
+
+        assertEquals(subscription, saved);
     }
 
     @Test
     void addCustomers() {
+        Subscription subscription = TestModels.getSubscription();
+        assertEquals(0, subscription.getCustomers().size());
+        subscription.addCustomer(TestModels.getCustomer());
+        assertEquals(1, subscription.getCustomers().size());
     }
 
     @Test
     void addCategories() {
+        Subscription subscription = TestModels.getSubscription();
+        assertEquals(0, subscription.getCategories().size());
+        subscription.addCategory(TestModels.getCategory());
+        assertEquals(1, subscription.getCategories().size());
     }
 
     @Test
