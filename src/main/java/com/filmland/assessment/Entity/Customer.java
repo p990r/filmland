@@ -14,7 +14,7 @@ public class Customer {
     private String email;
     @Column(name = "password", nullable = false, unique = false)
     private String password;
-    @Column(name = "paymentdate", nullable = false, unique = false)
+    @Column(name = "paymentdate", nullable = true, unique = false)
     private Date paymentDate;
 
     public Customer(Long id, String email, String password){
